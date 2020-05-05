@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
 import {Jumbotron} from "react-bootstrap";
-import {setSensorState} from "../actions/dataActions";
+import {setSensorState, setQuality} from "../actions/dataActions";
 
 class DataViewer extends Component {
 
@@ -14,7 +14,8 @@ class DataViewer extends Component {
         temperature: 0,
         humidity: 0,
         pressure: 0
-      }
+      },
+      quality: 'good'
     };
     this.eventSource.onopen = e => {
       // TODO: Dispatch a streamOn event to the store here
@@ -39,8 +40,8 @@ class DataViewer extends Component {
     this.eventSource.onmessage = e => {
       console.log('Message received');
       let jsonData = JSON.parse(e.data);
-      this.props.setSensorState(jsonData);
-      this.setState({sensorData: jsonData});
+      this.props.setQuality(jsonData);
+      this.setState({quality: jsonData.quality});
     }
   }
 
@@ -49,10 +50,7 @@ class DataViewer extends Component {
       <div>
         <Jumbotron>
           <h1 classname="display-3">Air Quality</h1>
-          <p>Gas {this.state.sensorData.gas}</p>
-          <p>Temp {this.state.sensorData.temperature}</p>
-          <p>Humidity {this.state.sensorData.humidity}</p>
-          <p>Pressure {this.state.sensorData.pressure}</p>
+          <p>{this.state.quality}</p>
         </Jumbotron>
       </div>
     );
@@ -60,12 +58,16 @@ class DataViewer extends Component {
 }
 
 function mapStateToProps(state) {
-  return {sensorData: state.sensorData};
+  return {
+    sensorData: state.sensorData,
+    quality: state.quality
+  };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    setSensorState: sensorState => dispatch(setSensorState(sensorState))
+    setSensorState: sensorState => dispatch(setSensorState(sensorState)),
+    setQuality: quality => dispatch(setQuality(quality))
   };
 }
 

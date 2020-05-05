@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { Provider } from 'react-redux'
 import store from './store/index'
 import DataViewer from './components/DataViewer'
+import StreamController from './components/StreamController'
 
 class App extends Component {
   constructor(props) {

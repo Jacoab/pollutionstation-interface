@@ -6,3 +6,10 @@ export function setSensorState(sensorState) {
     payload: sensorState
   }
 }
+
+export function setQuality(quality) {
+  return {
+    type: actionTypes.SET_QUALITY,
+    payload: quality
+  }
+}

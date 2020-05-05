@@ -7,7 +7,8 @@ const initState = {
     temperature: 0,
     humidity: 0,
     pressure: 0
-  }
+  },
+  quality: 'good'
 };
 
 function rootReducer(state=initState, action) {
@@ -15,6 +16,9 @@ function rootReducer(state=initState, action) {
     return Object.assign({}, state, {
       sensorData: action.payload
     });
+  }
+  else if(action.type === actionTypes.SET_QUALITY) {
+    return Object.assign({}, state, {quality: action.payload})
   }
 
   return state;
