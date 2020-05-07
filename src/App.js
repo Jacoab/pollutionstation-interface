@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Provider } from 'react-redux'
 import store from './store/index'
 import DataViewer from './components/DataViewer'
-import StreamController from './components/StreamController'
 
 class App extends Component {
   constructor(props) {
@@ -12,11 +11,7 @@ class App extends Component {
   render(){
     return(
       <div>
-        <Provider store={store}>
-          <div>
-            <DataViewer interval={1000}/>
-          </div>
-        </Provider>
+        <DataViewer interval={1000}/>
       </div>
     );
   }

@@ -1,24 +1,19 @@
 import actionTypes from "../constants/actionTypes";
+import time from "../constants/time";
 
 const initState = {
+  quality: 'Awaiting data',
   streamOn: false,
-  sensorState: {
-    gas: 0,
-    temperature: 0,
-    humidity: 0,
-    pressure: 0
-  },
-  quality: 'good'
+  deviceURL: undefined,
+  interval: time.TEN_SECONDS
 };
 
 function rootReducer(state=initState, action) {
-  if(action.type === actionTypes.SET_SENSOR_STATE) {
-    return Object.assign({}, state, {
-      sensorData: action.payload
-    });
-  }
-  else if(action.type === actionTypes.SET_QUALITY) {
+  if(action.type === actionTypes.SET_QUALITY) {
     return Object.assign({}, state, {quality: action.payload})
+  }
+  else if(action.type === actionTypes.SET_INTERVAL) {
+    return Object.assign({}, state, {interval: action.payload})
   }
 
   return state;

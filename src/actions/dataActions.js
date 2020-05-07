@@ -10,6 +10,17 @@ export function setSensorState(sensorState) {
 export function setQuality(quality) {
   return {
     type: actionTypes.SET_QUALITY,
-    payload: quality
+    payload: {
+      quality: quality
+    }
+  }
+}
+
+export function setInterval(interval) {
+  return {
+    type: actionTypes.SET_INTERVAL,
+    payload: {
+      interval: interval
+    }
   }
 }

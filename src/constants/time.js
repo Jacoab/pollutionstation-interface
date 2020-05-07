@@ -1,0 +1,9 @@
+export default {
+  TEN_SECONDS: "10",
+  THIRTY_SECONDS: "30",
+  MINUTE: "60",
+  THIRTY_MINUTES: "1800",
+  HOUR: "3600",
+  TWELVE_HOURS: "43200",
+  DAY: "86400"
+};

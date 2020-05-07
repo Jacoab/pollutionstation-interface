@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
+import {ButtonGroup, Button, Container, Row} from 'react-bootstrap';
 import {connect} from "react-redux";
+import './StreamController.css';
 
 class StreamController extends Component{
   constructor(props) {
     super(props);
+    this.eventSource = new EventSource('http://10.0.0.60:5000/data');
     this.state = {
       streamOn: false
     }
@@ -11,26 +14,28 @@ class StreamController extends Component{
 
   render() {
     return (
-      <div>
-        <div className="row">
-          <div className="col-container">
-            <div className="col" style={{backgroundColor: 'white'}}>
-              <p>Stream</p>
-              <label className="switch">
-                <input type="checkbox" />
-                <span className="slider round" />
-              </label>
-            </div>
-            <div className="col" style={{backgroundColor: 'white'}}>
-              <div className="range">
-                <p>Time Delta</p>
-                <input type="range" min={1} max={8} steps={1} defaultValue={1} id="myRange" />
-                <p>Value: <span id="demo" /></p>
-              </div>
-            </div>
-          </div>
+      <div className="stream-controller">
+        <div>
+          <ButtonGroup size="lg" aria-label="time-panel">
+            <Button variant="secondary">10s</Button>
+            <Button variant="secondary">30s</Button>
+            <Button variant="secondary">1m</Button>
+            <Button variant="secondary">30m</Button>
+            <Button variant="secondary">1h</Button>
+            <Button variant="secondary">12</Button>
+            <Button variant="secondary">1d</Button>
+          </ButtonGroup>
+        </div>
+        <div className="switch-div">
+          <p>Stream</p>
+          <label className="switch">
+            <input type="checkbox" />
+            <span className="slider round" />
+          </label>
         </div>
       </div>
     );
   }
 }
+
+export default StreamController;
